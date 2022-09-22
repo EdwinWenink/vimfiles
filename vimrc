@@ -1,5 +1,8 @@
 " Edwin's VIM.
 
+" ~/.vim on Unix and ~/vimfiles on Windows
+let VIMHOME=fnamemodify(expand('$MYVIMRC'), ':p:h')
+
 " Initialize plugins
 runtime plugins.vim
 
@@ -24,8 +27,8 @@ setlocal spell
 " Set to utf-8 before, otherwise you'll need asci and latin versions as well
 set spelllang=en_us,nl
 
-" Set spellfile (errors...)
-set spellfile="~/.vim/spell/en.utf-8.add"
+" Set spellfile in a system agnostic manner
+let &spellfile = VIMHOME . '/spell/en.utf-8.add'
 
 " Enable syntax highlighting
 syntax on 
