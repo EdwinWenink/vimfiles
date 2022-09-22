@@ -21,14 +21,16 @@ set fileencoding=utf-8
 set path+=**
 
 " Enable spellchecking (':set spell' to enable again)
-setlocal spell
+set spell
 
 " Use multiple spell languages by default
 " Set to utf-8 before, otherwise you'll need asci and latin versions as well
 set spelllang=en_us,nl
 
 " Set spellfile in a system agnostic manner
-let &spellfile = VIMHOME . '/spell/en.utf-8.add'
+" We use two languages and two spell files
+" Add to the first spellfile (English) with 1zg, the second (Dutch) with 2zg
+let &spellfile = VIMHOME . '/spell/en.utf-8.add' . ',' . VIMHOME . '/spell/nl.utf-8.add'
 
 " Enable syntax highlighting
 syntax on 
