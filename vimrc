@@ -168,6 +168,13 @@ command! -nargs=1 Capture :call CaptureWithLink("<args>")
 :       echom 'Captured in ' . g:todo
 :endfunction
 
+" ------ QUIZ YOURSELF -------
+"nnoremap <leader>nq <Plug>(SearchQuestions)
+nnoremap <leader>nq :SearchQuestions<CR>
+"nnoremap <leader>pq <Plug>(PasteQuestions)
+nnoremap <leader>pq :PasteQuestions<CR>
+
+
 " ------------------ NOTETAKING SYSTEM ---------------------------
 "  TODO turn into plugin
 "

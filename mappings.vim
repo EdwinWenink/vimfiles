@@ -66,6 +66,10 @@ nnoremap <Leader>cl :ccl<CR>
 " Source: https://castel.dev/post/lecture-notes-1/
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
+" Strip trailing whitespace \ss -> 'strip spaces'
+" https://vim.fandom.com/wiki/Remove_unwanted_spaces#Simple_commands_to_remove_unwanted_whitespace
+:nnoremap <leader>ss :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
 " Reset syntax highlighting (mnemonic `syntax reset`)
 nnoremap <leader>sr :syntax sync fromstart<CR>
 
@@ -94,7 +98,3 @@ nnoremap <Right> :vertical-resize -2<CR>
 " Convert current md to pdf with pandoc
 " TODO shellescape on %
 nnoremap <leader>pd :!pandoc % -o %:r.pdf<CR>
-
-" Strip trailing whitespace \ss -> 'strip spaces'
-" https://vim.fandom.com/wiki/Remove_unwanted_spaces#Simple_commands_to_remove_unwanted_whitespace
-:nnoremap <silent> <leader>ss :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
