@@ -64,7 +64,7 @@ nnoremap <Leader>cl :ccl<CR>
 
 " Accept spelling corrections on the fly
 " Source: https://castel.dev/post/lecture-notes-1/
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+inoremap <silent> <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Strip trailing whitespace \ss -> 'strip spaces'
 " https://vim.fandom.com/wiki/Remove_unwanted_spaces#Simple_commands_to_remove_unwanted_whitespace

@@ -8,7 +8,7 @@ runtime plugins.vim
 
 " Load general mappings that do *not* depend on specific filetypes
 " Filetype specific mappings should be stored under `ftplugin`
-runtime mappings
+runtime mappings.vim
 
 " Enable modification of buffer contents
 set modifiable 
