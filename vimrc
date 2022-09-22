@@ -1,12 +1,11 @@
 " Edwin's VIM.
 
-call plug#begin('~/.vim/plugged')
+" By not specify a path, Plug automatically defaults to `~/.vim/plugged` on Unix
+" and to `~/vimfiles/` on Windows.
+call plug#begin()
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
-
-" Any valid git URL is allowed; check dashboard or activity. GHD! EdwinWenink; GHA! EdwinWenink
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips'   " See ~/vimfiles/ultisnip/  and :UltisnipEdit
