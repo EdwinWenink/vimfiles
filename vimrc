@@ -3,27 +3,9 @@
 " Initialize plugins
 runtime plugins.vim
 
-" Mappings to often used folders and docs  ----------------------------------------
-
-" Open netrw in folder with blog posts 
-nnoremap <leader>ws :e ~/Documents/personal_website/config.toml<CR>
-
-let g:website = "~/Documents/personal_website/"
-" TODO automatically open after creation; requires doing this in a function 
-command! -nargs=1 NewMicro :execute ":cd" website "| !hugo new -k micro micro/" . strftime("%Y-%m-%d") . "-<args>.md" 
-nnoremap <leader>nm :NewMicro 
-
-" Open AI /th/esis folder
-nnoremap <leader>th :e ~/Documents/Artificial\ Intelligence/Master/Thesis-TNO<CR>
-
-" Open AI/master folder
-nnoremap <leader>ai :e ~/Documents/Artificial\ Intelligence/Master<CR>
-
-" Open log
-nnoremap <leader>nl :cd ~/Dropbox/Log<CR>:e index.txt<CR>
-
-
-" ----------------------------------- GENERAL SETTINGS -----------------------------------
+" Load general mappings that do *not* depend on specific filetypes
+" Filetype specific mappings should be stored under `ftplugin`
+runtime mappings
 
 " Enable modification of buffer contents
 set modifiable 
@@ -32,22 +14,7 @@ set modifiable
 set encoding=utf-8
 set fileencoding=utf-8
 
-" Set default working directory
-"cd ~/Documents/
-
-" https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-" Add the current file's directory to the path if not already present.
-let s:default_path = escape(&path, '\ ') " store default value of 'path'
-" Always add the current file's directory to the path and tags list if not
-" already there. Add it to the beginning to speed up searches.
-autocmd BufRead *
-      \ let s:tempPath=escape(escape(expand("%:p:h"), ' '), '\ ') |
-      \ exec "set path-=".s:tempPath |
-      \ exec "set path-=".s:default_path |
-      \ exec "set path^=".s:tempPath |
-      \ exec "set path^=".s:default_path
-
-" Include subfolders
+" Include subfolders in path
 set path+=**
 
 " Enable spellchecking (':set spell' to enable again)
@@ -56,10 +23,6 @@ setlocal spell
 " Use multiple spell languages by default
 " Set to utf-8 before, otherwise you'll need asci and latin versions as well
 set spelllang=en_us,nl
-
-" Accept spelling corrections on the fly
-" Source: https://castel.dev/post/lecture-notes-1/
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Set spellfile (errors...)
 set spellfile="~/.vim/spell/en.utf-8.add"
@@ -76,9 +39,31 @@ set backspace=indent,eol,start
 " Show current line numbering at bottom-right
 set ruler
 
+" Highlight current line
+set cursorline
+
 " Use Vim's default command-line completion.
 " Default behavior: <TAB> to move and <CR> to validate
 set wildmenu
+
+" Completion menu options
+set completeopt+=menuone
+set completeopt+=longest
+set completeopt+=noselect
+"set completeopt+=popup "preview "popup
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+"Disable vim beeping during completion
+set belloff+=ctrlg 
+
+" always show signcolumns
+set signcolumn=yes
+
+" Settings for vim search
+set incsearch
+set hlsearch
 
 " Ignore case in searches
 set ignorecase
@@ -96,15 +81,10 @@ set foldlevel=1
 " Default=4000
 set updatetime=400
 
-" Settings for vim search
-set incsearch
-set hlsearch
-
 " Automatically re-read files if unmodified in vim
 set autoread
 
-" Keep lines above and below the cursor
-" set scrolloff=5
+" Keep n lines above and below the cursor
 set scrolloff=999
 
 " Enable digraph mode for entering special characters. Ä is produced by typing
@@ -123,7 +103,6 @@ if has ('gui_running')
 	if has ('gui_win32')
 		"set guifont=Courier_New:h10
 		set guifont=PragmataPro_Mono_Liga:h11
-		" Enable yanking to global clipboard for cross-terminal pasting
 		" Disable gui clutter for gVim
 		set guioptions-=m  "menu bar
 		set guioptions-=T  "toolbar
@@ -131,11 +110,8 @@ if has ('gui_running')
 		" Prevent annoying jumping after resizing
 		set guioptions-=r
 		set guioptions-=L
-		"set shell=powershell
-        "set shell=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+        " Set shell
         set shell=cmd.exe
-		" If I want to run Python3.7 commands, do:
-		"set shell=bash.exe
 		" Windows assumes colon to be part of path names
 		" but that breaks references like file.txt:linenumber
 		set isfname -=:
@@ -148,22 +124,13 @@ endif
 set background=light
 colorscheme PaperColor
 
-" Highlight current line
-set cursorline
-
 " In GUI versions, rely on undercurl for spell errors
 " Generally speaking, I don't like background highlighting on errors
 highlight SpellBad guibg=NONE
 highlight Error guibg=NONE
 
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
 
-" always show signcolumns
-set signcolumn=yes
-
-
-" -------------------------------------- GENERAL MAPPINGS --------------------------------------
+" PLUGIN SPECIFIC MAPPINGS
 
 " Map <F2> to NERDTree
 ":nnoremap <F2> :NERDTreeToggle<CR>
@@ -171,83 +138,12 @@ set signcolumn=yes
 " Map <F3> to open writer mode
 :nnoremap <F3> :Goyo<CR>
 
-" Open locallist vertically with custom function
-:nnoremap <F4> :Vlist<CR>
-
-" Map F8 to disabling auto indenting
-:nnoremap <F8> :setl noai nocin nosi<CR>
-
-" Escaping insert mode the lazy way 
-:inoremap jj <Esc>
-
-" Use space to open and close folds
-nnoremap <Space> za
-vnoremap <Space> za
-
-" More consistent behavior for upper case
-nnoremap Y y$
-
-" Keep it centered during search and line joining
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap J mzJ`z
-
-" Set undo break points for better undo behavior (do not undo the whole line)
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
-
-" Close quickfix window
-nnoremap <Leader>cl :ccl<CR>
-
-" Open Windows explorer at location of current buffer
-" TODO make variant for opening netrw directories
-nnoremap <silent> <A-f> :if expand("%:p:h") != "" \| exec "!start explorer.exe" expand("%:p:h:S") \| endif<CR>
-"nmap <F11> :!start explorer /select,%:p
-
 " Generate ctags
 nnoremap <leader>tt :silent !ctags -R . <CR>
 
 " Change directory to directory of current file
 nnoremap <leader>cd :cd %:h<CR>
 
-" Open file under cursor with external default problem
-" Windows version uses start; Unix... open? TODO a OS check
-nnoremap gO :!start /B <cfile><CR>
-
-" Reset syntax highlighting (mnemonic `syntax reset`)
-nnoremap <leader>sr :syntax sync fromstart<CR>
-
-" Timestamp
-iabbrev date- <c-r>=strftime("%Y/%m/%d %H:%M:%S")<cr>
-" Invoegen op dezelfde lijn zou beter zijn
-"nnoremap <leader>ts i--------------<ESC>:put! =strftime(\"%a %Y/%m/%d\")<CR>i<CR>--------------<CR><Down><Down><ESC>
-nnoremap <leader>ts :put! =strftime(\"%Y-%m-%d %a\t\:\")<CR>A
-
-"noremap! <expr> ,Y strftime("%Y")
-"noremap! <expr> ,D strftime("%b")
-
-" Disable arrow movement, resize splits instead
-nnoremap <Up> :resize +2<CR>
-nnoremap <Down> :resize -2<CR>
-nnoremap <Left> :vertical-resize +2<CR>
-nnoremap <Right> :vertical-resize -2<CR>
-
-" Navigate between splits
-" Currently vim-tmux-navigation already takes care of this
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-K> <C-W><C-J>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-
-" Convert current md to pdf with pandoc
-" TODO shellescape on %
-nnoremap <leader>pd :!pandoc % -o %:r.pdf<CR>
-
-" Strip trailing whitespace \ss -> 'strip spaces'
-" https://vim.fandom.com/wiki/Remove_unwanted_spaces#Simple_commands_to_remove_unwanted_whitespace
-:nnoremap <silent> <leader>ss :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " ------------------ todo.txt ---------------------------
 " extra bindings on top of todo.txt-vim
@@ -273,6 +169,7 @@ command! -nargs=1 Capture :call CaptureWithLink("<args>")
 :endfunction
 
 " ------------------ NOTETAKING SYSTEM ---------------------------
+"  TODO turn into plugin
 "
 " Overview of bindings (assuming "\" as leader key)
 " All note taking command start with "\n"
@@ -542,21 +439,6 @@ nnoremap <c-k> :Files<cr>
 "  \ 'header':  ['fg', 'Comment'] }
 
 
-" ---------------- Quiz yourself ---------------- "
-"  nq -> notes quiz for the currently open file
-nnoremap <leader>nq :vimgrep /\*\*Q\*\*/ %<CR>
-
-" Paste from quickfix list (handy to collect the questions somewhere)
-" Paste questions
-nnoremap <leader>pq :execute PasteQuickfix()<CR>
-
-:function! PasteQuickfix()
-:   for q in getqflist()
-:       put =q.text
-:   endfor
-:endfunction
-
-
 " ---------------- Hide Markdown Links ---------------- "
 "  I wanted this feature from plasticboy/vim-markdown
 "  Source: https://github.com/plasticboy/vim-markdown/blob/master/syntax/markdown.vim
@@ -772,15 +654,6 @@ let g:vim_jsx_pretty_colorful_config = 0 " default 0
 set laststatus=2 
 " Avoid showing mode (e.g. -- INSERT -- ) below airline
 set noshowmode
-
-" Completion menu
-set completeopt+=menuone
-set completeopt+=longest
-set completeopt+=noselect
-"set completeopt+=popup "preview "popup
-"
-set shortmess+=c "Shut off completion messages
-set belloff+=ctrlg "Disable vim beeping during completion
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
