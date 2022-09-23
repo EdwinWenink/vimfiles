@@ -174,10 +174,9 @@ command! -nargs=1 Capture :call CaptureWithLink("<args>")
 :endfunction
 
 " ------ QUIZ YOURSELF -------
-"nnoremap <leader>nq <Plug>(SearchQuestions)
-nnoremap <leader>nq :SearchQuestions<CR>
-"nnoremap <leader>pq <Plug>(PasteQuestions)
-nnoremap <leader>pq :PasteQuestions<CR>
+" Default bindings. You can override them as such:
+" nmap <leader>sq <Plug>(SearchQuestions)
+" nmap <leader>pq <Plug>(PasteQuestions)
 
 
 " ------------------ NOTETAKING SYSTEM ---------------------------
