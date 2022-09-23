@@ -340,9 +340,7 @@ function! CtrlPOpenFunc(action, line)
    if a:action =~ '^h$'    
       " Get the filename
       let l:filename = fnameescape(fnamemodify(a:line, ':t'))
-      " TODO .md extensie wordt alleen verwijderd als naam NIET begint met een nummer
-	  " TODO do not delete "-" when no timestamp is present
-	  let l:filename_wo_timestamp = fnameescape(fnamemodify(a:line, ':t:s/^\d\+-\(.*\)\|\.md/\1/'))
+      let l:filename_wo_timestamp = fnameescape(fnamemodify(a:line, ':t:s/\(^\d\+-\)\?\(.*\)\..\{1,3\}/\2/'))
       let l:filename_wo_timestamp = substitute(l:filename_wo_timestamp, "_", " ", "g")
 
       " Close CtrlP
@@ -350,7 +348,7 @@ function! CtrlPOpenFunc(action, line)
       call ctrlp#mrufiles#add(filename)
 
       " Insert the markdown link to the file in the current buffer
-	  let mdlink = "[ ". l:filename_wo_timestamp . " ]( " . l:filename . " )"
+	  let mdlink = "[". l:filename_wo_timestamp . "]( " . l:filename . " )"
       put=mdlink
   else    
       " Use CtrlP's default file opening function
