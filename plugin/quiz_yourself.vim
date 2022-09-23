@@ -16,31 +16,31 @@
 
 " TODO when pasting we can get errors about trailing characters
 " Do I need to escape something?
-:function PasteQuickfix()
-:   for q in getqflist()
-:       put=q.text
-:   endfor
-:endfunction
+function s:PasteQuickfix()
+   for q in getqflist()
+       put=q.text
+   endfor
+endfunction
 
 
 " Paste from quickfix list (handy to collect the questions somewhere)
 " Paste questions
-" nnoremap <leader>pq :call PasteQuickfix()<CR>
+" nnoremap <leader>pq :call s:PasteQuickfix()<CR>
 "
 "if !hasmapto('<Plug>Quiz_yourselfPasteQuestions;', 'n')
     "map <unique> <leader>pq <Plug>QuizPasteQuestions;
 "endif
-"noremap <unique> <script> <Plug>QuizPasteQuestions; <SID>PasteQuickfix
-"noremap <SID>PasteQuickfix :call <SID>PasteQuickfix()<CR>
+"noremap <unique> <script> <Plug>QuizPasteQuestions; <SID>s:PasteQuickfix
+"noremap <SID>s:PasteQuickfix :call <SID>s:PasteQuickfix()<CR>
 
 " NOTE multiple questions in a single line not supported
 " TODO turn into a function and let people specify their own question marker
 if !exists(":SearchQuestions")
-    command SearchQuestions :vimgrep /\*Q\*/ %<CR>
+    command SearchQuestions vimgrep /\*Q\*/ %
 endif
 
 if !exists(":PasteQuestions")
-    command PasteQuestions :call PasteQuickfix()<CR>
+    command PasteQuestions call s:PasteQuickfix()
 endif
 
 " Suggested mappings that can be overridden
