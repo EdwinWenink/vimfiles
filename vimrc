@@ -177,7 +177,7 @@ command! -nargs=1 Capture :call CaptureWithLink("<args>")
 " Default bindings. You can override them as such:
 " nmap <leader>sq <Plug>(SearchQuestions)
 " nmap <leader>pq <Plug>(PasteQuestions)
-
+" let g:quiz_marker = '*Q*'
 
 " ------------------ NOTETAKING SYSTEM ---------------------------
 "  TODO turn into plugin

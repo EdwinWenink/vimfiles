@@ -1,10 +1,17 @@
-" TODO create a function for searching ALL notes for questions
+" TODO list
+"   - create a function for searching ALL notes for questions
+"   - support other grep tools, e.g. ripgrep
 "
 " Do not reload if already loaded
 if exists("g:loaded_quiz_yourself")
     finish
 endif
 let g:loaded_quiz_yourself = 1
+
+" Defaults
+if !exists('g:quiz_marker')
+    let g:quiz_marker = '*Q*'
+endif
 
 function s:PasteQuickfix()
    for q in getqflist()
@@ -13,17 +20,15 @@ function s:PasteQuickfix()
 endfunction
 
 " NOTE multiple questions in a single line not supported
-" TODO turn into a function and let people specify their own question marker
-" TODO can I automatically escape *Q* into \*Q\*?
 if !exists(":SearchQuestions")
-    command SearchQuestions vimgrep /\*Q\*/ %
+    command SearchQuestions :execute 'vimgrep ' escape(g:quiz_marker, '\') . ' %'
 endif
 
 if !exists(":PasteQuestions")
     command PasteQuestions call s:PasteQuickfix()
 endif
 
-" TODO do these mappings call the *commands* or the functions?
+" Should these mappings call the *commands* or the functions?
 " Think maybe function is the proper way because we can then use <SID>?
 " On the other hand.. I do an existence check on the commands so...
 "nnoremap <silent> <Plug>(SearchQuestions) :call <SID>SearchQuestions<CR>
