@@ -121,6 +121,9 @@ Plug 'freitass/todo.txt-vim'
 
 " Plug 'junegunn/vim-journal'
 
+" Quiz yourself
+Plug 'EdwinWenink/vim-quiz'
+
 " WRITING ----------------------------------
 
 " Integration of vim with pandoc
