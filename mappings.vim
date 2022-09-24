@@ -4,23 +4,22 @@
 " OS DEPENDENT MAPPINGS
 
 " Windows specific mappings
-" TODO
+if has('win32')
 
-" Open Windows explorer at location of current buffer
-" TODO make variant for opening netrw directories
-nnoremap <silent> <A-f> :if expand("%:p:h") != "" \| exec "!start explorer.exe" expand("%:p:h:S") \| endif<CR>
+    " Open Windows explorer at location of current buffer
+    " TODO make variant for opening netrw directories
+    nnoremap <silent> <A-f> :if expand("%:p:h") != "" \| exec "!start explorer.exe" expand("%:p:h:S") \| endif<CR>
 
-" Open file under cursor with external default problem
-" Windows version uses start; Unix... open? TODO a OS check
-nnoremap gO :!start /B <cfile><CR>
+    " TODO Unix alternatives of the same mapping
+    " Open file under cursor with external default problem
+    " Windows version uses start; Unix... open? TODO a OS check
+    nnoremap gO :!start /B <cfile><CR>
 
-" Unix alternatives of the same mapping
-" TODO
+    " Open netrw in folder with blog posts 
+    nnoremap <leader>ws :e ~/Documents/personal_website/config.toml<CR>
+endif
 
 " Shortcuts to directories
-
-" Open netrw in folder with blog posts 
-nnoremap <leader>ws :e ~/Documents/personal_website/config.toml<CR>
 
 let g:website = "~/Documents/personal_website/"
 " TODO automatically open after creation; requires doing this in a function 
