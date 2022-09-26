@@ -2,6 +2,7 @@
 " Generally speaking, I don't like background highlighting on errors
 highlight SpellBad guibg=NONE
 highlight Error guibg=NONE
+highlight WarningMsg gui=undercurl
 
 " Fix unreadable cases in the terminal
 " TODO test whether I still need this line!

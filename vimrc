@@ -155,9 +155,12 @@ endif
 
 " Apply my own ad-hoc styling rules *after* loading a color scheme
 " Ref: https://vi.stackexchange.com/a/24847
+" TODO is there a better way of running the python specific highlights only
+" for Python files?
 augroup colors
     au!
     autocmd ColorScheme * runtime after/colors/common.vim
+    autocmd ColorScheme * runtime after/colors/python.vim
 augroup END
 
 " On Windows, set a colorscheme
@@ -177,103 +180,8 @@ nnoremap <leader>tt :silent !ctags -R . <CR>
 nnoremap <leader>cd :cd %:h<CR>
 
 " PYTHON ----------------------------------------
+" See after/ftplugin/python.vim
 
-" Enable python support on Windows by showing where the .dll is"
-if has('win32')
-    " Check which .dll is expected with :version
-    let $PYTHONHOME = 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\'
-    let &pythonthreedll= 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\python310.dll'
-endif
-let g:pymode_python = 'python3'
-
-" Workaround to avoid notifications about imp module being deprecated
-if has('python3')
-    silent! python3 1
-endif
-
-augroup python
-	autocmd!
-	autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,cla
-    autocmd FileType python setlocal completeopt-=preview
-    autocmd FileType python setlocal number
-    autocmd FileType python :let python_space_error_highlight = 1
-    " Trying to indent comments but doens't seem to work yet; see tip in :help smartindent
-    " smartindent causes this problem because in C # is a preprocessor statement
-    " In fact, seems to make >> stop working on comments altogether
-    " autocmd FileType python inoremap # X#  
-    "autocmd FileType python map <buffer> <leader>\fl :call flake8#Flake8()<CR>
-	autocmd FileType python set foldmethod=indent foldlevel=99
-    autocmd BufWritePost *.py call Flake8()  " Run linter on saving
-augroup END
-
-" Flake8 linting
-let g:flake8_show_in_gutter=1
-let g:flake8_show_in_file=1
-
-" Customize markers
-let g:flake8_error_marker='x>'
-let g:flake8_warning_marker='~>'
-
-" Do not show quickfix (bit too intrusive for my taste)
-let g:flake8_show_quickfix=0
-
-" Unset markers ('flake unset' aka 'fuck u')
-nnoremap <leader>fu :call flake8#Flake8UnplaceMarkers()<CR>
-
-" Show error message of current line in the rules
-" 'flake current'
-nnoremap <leader>fc :call flake8#Flake8ShowError()<CR>
-
-" Use colors defined in the colorscheme
-highlight link Flake8_Error      Error
-highlight link Flake8_Warning    WarningMsg
-highlight link Flake8_Complexity WarningMsg
-highlight link Flake8_Naming     WarningMsg
-highlight link Flake8_PyFlake    WarningMsg
-
-" Interactive programming
-" 1. Start up Vim 8 terminal, load correct environments, load iPython
-" 2. Send keys to open session
-"       - either current line with <leader>i)
-"       - or visual selection with <leader>v)
-let g:shellname = 'cmd.exe'  " TODO This setting should not be hardcoded in the future
-" NOTE right now I just use the shell variable because for cmd.exe it is the same.
-" Does this hold in general and cross platform? Probably not.
-" nnoremap <leader>i :y \| :call term_sendkeys(bufnr(&shell), @")<CR>
-nnoremap <leader>i :y \| :call term_sendkeys(bufnr(shellname), @")<CR>
-" NOTE pasting with autoindent causes indentation issues with pasting
-" See: https://ipython.org/ipython-doc/dev/interactive/reference.html#autoindent
-" Quick fix: toggle within iPython with %autoindent 
-vnoremap <leader>v :y \| :call term_sendkeys(bufnr(&shell), @")<CR>
-
-" Jedi-vim (deoplete + python)
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 1
-let g:jedi#goto_command = "<leader>g"
-let g:jedi#goto_assignments_command = "<leader>a"
-let g:jedi#goto_stubs_command = "<leader>s"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>u"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-
-" Ways of listing Python functions in current file
-" :ilist def. *
-" :vim /def\ ./ %
-" followed by :copen
-" :g/def\ .*
-" :CtrlPBufTag
-
-" Handy default Vim navigation mappings that work with Python
-"    [[ Jump backwards to begin of current/previous toplevel
-"    [] Jump backwards to end of previous toplevel
-"    ][ Jump forwards to end of current toplevel
-"    ]] Jump forwards to begin of next toplevel
-"    [m Jump backwards to begin of current/previous method/scope
-"    [M Jump backwards to end of previous method/scope
-"    ]M Jump forwards to end of current/next method/scope
-"    ]m Jump forwards to begin of next method/scope
 
 " JAVASCRIPT -------------------------------------- 
 
@@ -302,8 +210,6 @@ let g:vim_jsx_pretty_colorful_config = 0 " default 0
 
 
 " GENERAL PLUGIN SETTINGS -----------------------------
-"
-
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
