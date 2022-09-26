@@ -32,6 +32,9 @@ set spelllang=en_us,nl
 " Add to the first spellfile (English) with 1zg, the second (Dutch) with 2zg
 let &spellfile = VIMHOME . '/spell/en.utf-8.add' . ',' . VIMHOME . '/spell/nl.utf-8.add'
 
+" Define thesaurus files (insert mode <C-x><C-t>)
+let &thesaurus = VIMHOME . '/spell/mthesaur.txt'
+
 " Enable syntax highlighting
 syntax on 
 
@@ -785,9 +788,6 @@ let g:zv_file_types = {
 
 
 "------------------------------- MARKDOWN/PROSE SETTINGS -------------------------------
-
-" Define thesaurus files (insert mode <C-x><C-t>)
-set thesaurus+=~/.vim/mthesaur.txt
 
 " Settings for limelight with dark background (:help cterm-colors)
 "let g:limelight_conceal_ctermfg = 'gray'
