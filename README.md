@@ -15,10 +15,6 @@ WIP:
 
 Deoplete requires: `python -m pip install pynvim`.
 
-## TODO
-
-- Make sure vimrc runs without errors even when no plugins are loaded.
-- Is there a good way to install external dependencies?
 
 ## Reading materials for configuring Vim
 

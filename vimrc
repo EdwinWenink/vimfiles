@@ -153,12 +153,10 @@ endif
 if has('win32')
     " Enable a colorscheme
     set background=light
-    colorscheme PaperColor
+    if filereadable(VIMHOME . '/plugged/papercolor-theme/colors/PaperColor.vim')
+        colorscheme PaperColor
+    endif
 endif
-
-"TODO is this needed?
-"let base16colorspace=256
-"set t_Co=256
 
 " In GUI versions, rely on undercurl for spell errors
 " Generally speaking, I don't like background highlighting on errors
