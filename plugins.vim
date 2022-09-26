@@ -121,11 +121,13 @@ Plug 'vim-scripts/VOoM'
 
 " Todo.txt
 Plug 'freitass/todo.txt-vim'
+Plug 'EdwinWenink/capture-todo.vim'
 
 " Plug 'junegunn/vim-journal'
 
 " Quiz yourself
 Plug 'EdwinWenink/vim-quiz'
+
 
 " WRITING ----------------------------------
 
