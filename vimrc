@@ -1,6 +1,7 @@
 " Edwin's VIM.
 
 " ~/.vim on Unix and ~/vimfiles on Windows
+" Note: this assumes you have placed your vimrc in this folder!
 let VIMHOME=fnamemodify(expand('$MYVIMRC'), ':p:h')
 
 " Initialize plugins

@@ -7,20 +7,24 @@
 if has('win32')
 
     " Open Windows explorer at location of current buffer
-    " TODO make variant for opening netrw directories
     nnoremap <silent> <A-f> :if expand("%:p:h") != "" \| exec "!start explorer.exe" expand("%:p:h:S") \| endif<CR>
 
-    " TODO Unix alternatives of the same mapping
     " Open file under cursor with external default problem
-    " Windows version uses start; Unix... open? TODO a OS check
     nnoremap gO :!start /B <cfile><CR>
 
     " Open netrw in folder with blog posts 
     nnoremap <leader>ws :e ~/Documents/personal_website/config.toml<CR>
 endif
 
-" Shortcuts to directories
+" Linux specific mappings
+if has('unix')
+    " TODO adjust the following
+    " nnoremap <silent> <A-f> :if expand("%:p:h") != "" \| exec "!start explorer.exe" expand("%:p:h:S") \| endif<CR>
+    " Think Unix uses 'open' instead of 'start'?
+    " nnoremap gO :!start /B <cfile><CR>
+endif 
 
+" Shortcuts to directories
 let g:website = "~/Documents/personal_website/"
 " TODO automatically open after creation; requires doing this in a function 
 command! -nargs=1 NewMicro :execute ":cd" website "| !hugo new -k micro micro/" . strftime("%Y-%m-%d") . "-<args>.md" 
