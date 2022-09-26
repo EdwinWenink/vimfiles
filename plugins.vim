@@ -116,6 +116,9 @@ Plug 'lervag/wiki.vim'
 " Plug 'xolox/vim-notes'
 " Plug 'xolox/vim-misc'
 
+" Full-featured document outliner, e.g. voor markdown or latex (:Voom latex)
+Plug 'vim-scripts/VOoM'
+
 " Todo.txt
 Plug 'freitass/todo.txt-vim'
 

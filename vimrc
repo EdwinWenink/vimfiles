@@ -33,8 +33,19 @@ set spelllang=en_us,nl
 " Add to the first spellfile (English) with 1zg, the second (Dutch) with 2zg
 let &spellfile = VIMHOME . '/spell/en.utf-8.add' . ',' . VIMHOME . '/spell/nl.utf-8.add'
 
+" Define thesaurus files (insert mode <C-x><C-t>)
+let &thesaurus = VIMHOME . '/spell/mthesaur.txt'
+
 " Enable syntax highlighting
 syntax on 
+
+" Filetype detection
+" If you use syntax these are already enabled by default
+if has("autocmd")
+    filetype on
+    filetype indent on
+    filetype plugin on
+endif
 
 " Autoindent
 set autoindent
@@ -124,17 +135,32 @@ if has ('gui_running')
 	endif
 endif
 
-" Enable a colorscheme
-" let base16colorspace=256
-" colorscheme base16-google-light
-set background=light
-colorscheme PaperColor
+" STYLING
+
+" On Windows, set a colorscheme
+" On Unix, take over terminal style (from .Xresources)
+if has('win32')
+    " Enable a colorscheme
+    set background=light
+    colorscheme PaperColor
+endif
+
+"TODO is this needed?
+"let base16colorspace=256
+"set t_Co=256
 
 " In GUI versions, rely on undercurl for spell errors
 " Generally speaking, I don't like background highlighting on errors
 highlight SpellBad guibg=NONE
 highlight Error guibg=NONE
 
+" Fix unreadable cases in the terminal
+highlight Visual ctermbg=Yellow
+
+" Ad-hoc highlighting rules 
+highlight VertSplit cterm=NONE
+highlight FoldColumn ctermbg=NONE
+highlight SignColumn ctermbg=NONE
 
 " PLUGIN SPECIFIC MAPPINGS
 
@@ -531,15 +557,11 @@ command! -nargs=1 SearchJSONBacklinks R jq -r "<args>" "C:\Users\Edwin Wenink\Do
 " PYTHON ----------------------------------------
 
 " Enable python support on Windows by showing where the .dll is"
-" Check which .dll is expected with :version
-"let $PYTHONHOME = 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python36-32\'
-"let $PYTHONHOME = 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python37-32\'
-let $PYTHONHOME = 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\'
-" Previous line didn't work... so I manually pointed to the python36.dll
-"let &pythonthreedll= 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python36-32\python36.dll'
-" Next line doesn't work in neovim
-"let &pythonthreedll= 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python37-32\python37.dll'
-let &pythonthreedll= 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\python310.dll'
+if has('win32')
+    " Check which .dll is expected with :version
+    let $PYTHONHOME = 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\'
+    let &pythonthreedll= 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\python310.dll'
+endif
 let g:pymode_python = 'python3'
 
 " Workaround to avoid notifications about imp module being deprecated
@@ -767,9 +789,6 @@ let g:zv_file_types = {
 
 
 "------------------------------- MARKDOWN/PROSE SETTINGS -------------------------------
-
-" Define thesaurus files (insert mode <C-x><C-t>)
-set thesaurus+=~/.vim/mthesaur.txt
 
 " Settings for limelight with dark background (:help cterm-colors)
 "let g:limelight_conceal_ctermfg = 'gray'

@@ -9,9 +9,16 @@ We get more consistency by storing our `vimrc` in this repository *without* a pr
 I use [vim-plug](https://github.com/junegunn/vim-plug) for managing external plugins.
 They will be stored in a `plugged/` folder after you open Vim and run `:Plug install`.
 
+## External dependencies to install
+
+WIP:
+
+Deoplete requires: `python -m pip install pynvim`.
+
 ## TODO
 
-Make sure vimrc runs without errors even when no plugins are loaded.
+- Make sure vimrc runs without errors even when no plugins are loaded.
+- Is there a good way to install external dependencies?
 
 ## Reading materials for configuring Vim
 
