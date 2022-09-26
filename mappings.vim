@@ -30,10 +30,20 @@ let g:website = "~/Documents/personal_website/"
 command! -nargs=1 NewMicro :execute ":cd" website "| !hugo new -k micro micro/" . strftime("%Y-%m-%d") . "-<args>.md" 
 nnoremap <leader>nm :NewMicro 
 
-" ---------------------------------
-
 " Open log
 nnoremap <leader>nl :cd ~/Dropbox/Log<CR>:e index.txt<CR>
+
+
+" Calling external program
+" ------------------------
+
+" Convert current md to pdf with pandoc
+" TODO shellescape on %
+nnoremap <leader>pd :!pandoc % -o %:r.pdf<CR>
+
+
+" General mappings
+" ----------------
 
 " Open locallist vertically with custom function
 :nnoremap <F4> :Vlist<CR>
@@ -65,6 +75,12 @@ inoremap ? ?<c-g>u
 " Close quickfix window
 nnoremap <Leader>cl :ccl<CR>
 
+" Find and list all Markdown headers
+nnoremap <leader>h :g/^#/#<CR>
+
+" Open most recently edited file (selects index 1 from :oldfiles)
+nnoremap <leader>r `1
+
 " Accept spelling corrections on the fly
 " Source: https://castel.dev/post/lecture-notes-1/
 inoremap <silent> <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
@@ -77,10 +93,9 @@ inoremap <silent> <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 nnoremap <leader>sr :syntax sync fromstart<CR>
 
 " Timestamp
-iabbrev date- <c-r>=strftime("%Y/%m/%d %H:%M:%S")<cr>
 " Invoegen op dezelfde lijn zou beter zijn
 "nnoremap <leader>ts i--------------<ESC>:put! =strftime(\"%a %Y/%m/%d\")<CR>i<CR>--------------<CR><Down><Down><ESC>
-nnoremap <leader>ts :put! =strftime(\"%Y-%m-%d %a\t\:\")<CR>A
+nnoremap <leader>ts :put! =strftime(\"%Y-%m-%d\t%a\:\")<CR>A
 
 "noremap! <expr> ,Y strftime("%Y")
 "noremap! <expr> ,D strftime("%b")
@@ -97,7 +112,3 @@ nnoremap <Right> :vertical-resize -2<CR>
 "nnoremap <C-K> <C-W><C-J>
 "nnoremap <C-L> <C-W><C-L>
 "nnoremap <C-H> <C-W><C-H>
-
-" Convert current md to pdf with pandoc
-" TODO shellescape on %
-nnoremap <leader>pd :!pandoc % -o %:r.pdf<CR>

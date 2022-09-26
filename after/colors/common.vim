@@ -4,6 +4,7 @@ highlight SpellBad guibg=NONE
 highlight Error guibg=NONE
 
 " Fix unreadable cases in the terminal
+" TODO test whether I still need this line!
 highlight Visual ctermbg=Yellow
 
 " Ad-hoc highlighting rules 
