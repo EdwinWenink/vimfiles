@@ -11,6 +11,9 @@ runtime plugins.vim
 " Filetype specific mappings should be stored under `ftplugin`
 runtime mappings.vim
 
+" Abbreviations
+runtime spell/iabbrev.vim
+
 " Enable modification of buffer contents
 set modifiable 
 
@@ -40,6 +43,7 @@ let &thesaurus=VIMHOME . '/spell/mthesaur.txt'
 " Note: by default Vim only allows spaces as a delimiter so this thesaurus is
 " not parsed correctly, e.g. does not work with multi-word phrases.
 " Since Vim 8.2 you can specify a custom completion function to fix this.
+" Note: about versioning... the passed function is Vim9script
 if has('eval') && v:version > 802
     set thesaurusfunc=g:thesaurusfunc#Thesaurusfunc
 endif
