@@ -31,16 +31,23 @@ set spelllang=en_us,nl
 " Set spellfile in a system agnostic manner
 " We use two languages and two spell files
 " Add to the first spellfile (English) with 1zg, the second (Dutch) with 2zg
-let &spellfile = VIMHOME . '/spell/en.utf-8.add' . ',' . VIMHOME . '/spell/nl.utf-8.add'
+let &spellfile=VIMHOME . '/spell/en.utf-8.add' . ',' . VIMHOME . '/spell/nl.utf-8.add'
 
 " Define thesaurus files (insert mode <C-x><C-t>)
-let &thesaurus = VIMHOME . '/spell/mthesaur.txt'
+" Source: https://www.gutenberg.org/files/3202/files/mthesaur.txt
+let &thesaurus=VIMHOME . '/spell/mthesaur.txt'
+
+" Note: by default Vim only allows spaces as a delimiter so this thesaurus is
+" not parsed correctly, e.g. does not work with multi-word phrases.
+" Since Vim 8.2 you can specify a custom completion function to fix this.
+if has('eval') && v:version > 802
+    set thesaurusfunc=g:thesaurusfunc#Thesaurusfunc
+endif
 
 " Enable syntax highlighting
 syntax on 
 
-" Filetype detection
-" If you use syntax these are already enabled by default
+" Filetype detection. If you use syntax these are already enabled by default
 if has("autocmd")
     filetype on
     filetype indent on
