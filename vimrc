@@ -177,12 +177,6 @@ else
     colorscheme default
 endif
 
-" Generate ctags
-nnoremap <leader>tt :silent !ctags -R . <CR>
-
-" Change directory to directory of current file
-nnoremap <leader>cd :cd %:h<CR>
-
 " PYTHON ----------------------------------------
 " See after/ftplugin/python.vim
 

@@ -41,9 +41,14 @@ nnoremap <leader>nl :cd ~/Dropbox/Log<CR>:e index.txt<CR>
 " TODO shellescape on %
 nnoremap <leader>pd :!pandoc % -o %:r.pdf<CR>
 
+" Generate ctags
+nnoremap <leader>tt :silent !ctags -R . <CR>
 
 " General mappings
 " ----------------
+
+" Change directory to directory of current file
+nnoremap <leader>cd :cd %:h<CR>
 
 " Open locallist vertically with custom function
 :nnoremap <F4> :Vlist<CR>
