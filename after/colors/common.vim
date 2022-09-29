@@ -4,8 +4,8 @@ highlight SpellBad guibg=NONE
 highlight Error guibg=NONE
 " highlight WarningMsg gui=undercurl  " I'm experiencing bugs where undercurl doesn't clear
 
-" Fix unreadable cases in the terminal
-" TODO test whether I still need this line!
+" In my terminal setup, the default is a black background which is unreadable
+" TODO: Maybe fix my .Xresources instead?
 highlight Visual ctermbg=Yellow
 
 " Ad-hoc highlighting rules 
