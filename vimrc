@@ -171,6 +171,10 @@ if has('win32')
     if filereadable(VIMHOME . '/plugged/papercolor-theme/colors/PaperColor.vim')
         colorscheme PaperColor
     endif
+else
+    " Note: we set a default because otherwise the augroup with after/
+    " settings from above has nothing to override.
+    colorscheme default
 endif
 
 " Generate ctags
