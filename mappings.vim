@@ -33,6 +33,8 @@ nnoremap <leader>nm :NewMicro
 " Open log
 nnoremap <leader>nl :cd ~/Dropbox/Log<CR>:e index.txt<CR>
 
+" Jump to VIMHOME and set as working directory
+nnoremap <leader>vh :execute ":cd ".VIMHOME<CR>:e . <CR>
 
 " Calling external program
 " ------------------------
