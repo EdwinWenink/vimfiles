@@ -1,9 +1,5 @@
-" Mappings to often used folders and docs
-"
-"   ``
-" ---------------------------------------
-
-" OS DEPENDENT MAPPINGS
+" OS dependent mappings {{{1 
+" --------------------------
 
 " Windows specific mappings
 if has('win32')
@@ -26,7 +22,9 @@ if has('unix')
     " nnoremap gO :!start /B <cfile><CR>
 endif 
 
-" Shortcuts to directories
+" Shortcuts to directories {{{1 
+" -----------------------------
+
 let g:website = "~/Documents/personal_website/"
 " TODO automatically open after creation; requires doing this in a function 
 command! -nargs=1 NewMicro :execute ":cd" website "| !hugo new -k micro micro/" . strftime("%Y-%m-%d") . "-<args>.md" 
@@ -41,8 +39,8 @@ nnoremap <leader>vh :execute ":cd ".VIMHOME<CR>:e . <CR>
 " Edit abbreviation file
 nnoremap <leader>ab :execute ":e ".VIMHOME."/spell/iabbrev.vim"<CR>
 
-" Calling external program
-" ------------------------
+" Calling external programs {{{1
+" ------------------------------
 
 " Convert current md to pdf with pandoc
 " TODO shellescape on %
@@ -51,8 +49,8 @@ nnoremap <leader>pd :!pandoc % -o %:r.pdf<CR>
 " Generate ctags
 nnoremap <leader>tt :silent !ctags -R . <CR>
 
-" General mappings
-" ----------------
+" General mappings {{{1
+" ---------------------
 
 " Change directory to directory of current file
 nnoremap <leader>cd :cd %:h<CR>
@@ -69,6 +67,10 @@ nnoremap <leader>cd :cd %:h<CR>
 " Use space to open and close folds
 nnoremap <Space> za
 vnoremap <Space> za
+
+" Buffer navigation
+nnoremap <silent> gb :bnext<CR>
+nnoremap <silent> gB :bprevious<CR>
 
 " More consistent behavior for upper case
 nnoremap Y y$
@@ -133,3 +135,5 @@ nmap <leader>ti <Plug>(GotoTodoInbox)
 nmap <leader>td <Plug>(GotoTodo)
 nmap <leader>mt <Plug>(MoveToTodo)
 nmap <leader>mi <Plug>(MoveToInbox)
+
+" }}}1

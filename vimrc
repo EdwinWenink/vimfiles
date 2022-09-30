@@ -1,5 +1,8 @@
 " Edwin's VIM.
 
+" Vim settings {{{1
+" -----------------
+
 " ~/.vim on Unix and ~/vimfiles on Windows
 " Note: this assumes you have placed your vimrc in this folder!
 let VIMHOME=fnamemodify(expand('$MYVIMRC'), ':p:h')
@@ -107,8 +110,10 @@ set hidden
 " Change default 8 column tab to 4 column tab
 :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
-" Set fold level: max level to fold on opening a file
-set foldlevel=1
+" Folding
+set foldlevel=1         " Set fold level: max level to fold on opening a file
+set foldmethod=marker   " Let markers like }}}0 define folds of level 1 (specific ftplugins should override this)
+set foldignore=         " By default # is ignored because it's a C directive. Not handy for Python etc.
 
 " Set updatetime of .swp file (changed for faster LaTeX preview).
 " Default=4000
@@ -151,7 +156,8 @@ if has ('gui_running')
 	endif
 endif
 
-" STYLING
+" Style {{{1
+" ----------
 
 " Apply my own ad-hoc styling rules *after* loading a color scheme
 " Ref: https://vi.stackexchange.com/a/24847
@@ -177,11 +183,17 @@ else
     colorscheme default
 endif
 
-" PYTHON ----------------------------------------
+" Programming languages {{{1
+" --------------------------
+
+" Python {{{2
+" -----------
+
 " See after/ftplugin/python.vim
 
-
-" JAVASCRIPT -------------------------------------- 
+" Javascript {{{2
+" ---------------
+" TODO put in separate file
 
 augroup javascript
     autocmd!
@@ -206,10 +218,23 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 "vim-jsx-pretty'
 let g:vim_jsx_pretty_colorful_config = 0 " default 0
 
+" Java {{{2
 
-" GENERAL PLUGIN SETTINGS -----------------------------
+" Compile java files from within vim
+command! Javac !javac $(find . -name "*.java")
 
-" Deoplete
+" HLSL shaders {{{2
+augroup shader
+    autocmd!
+	autocmd BufNewFile,BufRead *.compute set ft=hlsl
+	autocmd BufNewFile,BufRead *.compute set nospell
+augroup END
+
+
+" General plugin settings {{{1
+" ----------------------------
+
+" Deoplete {{{2
 let g:deoplete#enable_at_startup = 1
 
 " Pass a dictionary to set multiple options
@@ -218,7 +243,7 @@ let g:deoplete#enable_at_startup = 1
 "\ 'smart_case': v:true,
 "\ })
 
-" Auto pairs
+" Auto pairs {{{2
 " Avoid conflict with Mucomplete
 "let g:AutoPairsMapSpace = 0
 "imap <silent> <expr> <space> pumvisible()
@@ -233,7 +258,7 @@ let g:deoplete#enable_at_startup = 1
 " multicomplete. Set it to something else
 " imap <C-space> <Plug>IMAP_JumpForward
 
-" Ultisnips
+" Ultisnips {{{2
 " From help mucomplete-compatibility
 
 " Defaults:
@@ -245,6 +270,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " According to :help , interferes with default binding i_CTRL-X_CTRL-K
 let g:UltiSnipsBackwardTrigger = "<s-tab>"
 
+" Mucomplete {{{2
 " Expand snippet on selecting mucomplete entry
 " inoremap <silent> <expr> <plug>MyCR
      "\ mucomplete#ultisnips#expand_snippet("\<cr>")
@@ -259,21 +285,14 @@ let g:mucomplete#chains = {
     \ 'default' : ['path', 'omni',  'ulti', 'keyn', 'dict', 'uspl'],
     \ }
 
-" Vim easy align
+" Vim easy align {{{2
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Shader syntax highlighting
-augroup shader
-    autocmd!
-	autocmd BufNewFile,BufRead *.compute set ft=hlsl
-	autocmd BufNewFile,BufRead *.compute set nospell
-augroup END
-
-" Zeal offline documentation
+" Zeal offline documentation {{{2
 " I didn't figure out how to change $ProgramFiles, but it points to x86 which I don't want
 let g:zv_zeal_executable = has('win32')
             "\ ? $ProgramFiles . '\Zeal\zeal.exe'
@@ -305,8 +324,11 @@ let g:zv_file_types = {
             \ }
 
 
+" Vimspector {{{2
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = ['debugpy']
 
-"------------------------------- MARKDOWN/PROSE SETTINGS -------------------------------
+" Limelight and Goyo {{{2
 
 " Settings for limelight with dark background (:help cterm-colors)
 "let g:limelight_conceal_ctermfg = 'gray'
@@ -352,8 +374,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "autocmd! User GoyoLeave Limelight! | set bg=dark | highlight Normal ctermbg=Black | set number!
 
-" Markdown settings
-let g:vim_markdown_folding_disabled=1
+" Vim Pencil {{{2
 let g:pencil#wrapModeDefault = 'soft'
 let g:pencil_higher_contrast_ui = 1
 let g:pencil_terminal_italics = 1
@@ -364,6 +385,9 @@ augroup pencil
 	autocmd Filetype text call pencil#init()
 augroup END
 
+" Vim Markdown settings {{{2
+let g:vim_markdown_folding_disabled=1
+
 " Vim-pandoc and vim-pandoc-syntax (E.g. :Pandoc! pdf)
 " let g:pandoc#modules#disabled = ["folding"]
 " Temporarily disable these because they do not work with Python 3.7
@@ -371,7 +395,9 @@ let g:pandoc#modules#disabled = ["bibliographies", "command", "templates","menu"
 let g:pandoc#modules#warn_disabled = 0
 let g:pandoc#syntax#conceal#urls = 1
 
-"------------------------------- PANDOC and LATEX styling  -------------------------------
+" Pandoc and Latex (incl. some ad-hoc styling) {{{2
+
+" TODO review whether the styling overrides are still necessary
 
 " Use compound pandoc.markdown for best of both worlds
 " TODO write a blogpost about this
@@ -391,11 +417,6 @@ augroup latex
     autocmd Filetype tex highlight Conceal ctermbg=NONE guibg=NONE
     "autocmd Filetype tex EnableAutocorrect
 augroup END
-			
-"------------------------------- COMPILING STUFF / LaTeX -------------------------------
-
-" Compile java files from within vim
-command! Javac !javac $(find . -name "*.java")
 
 " Vimtex
 let g:vimtex_enabled = 1
@@ -405,9 +426,7 @@ let g:vimtex_view_method = 'general'
 let g:vimtex_view_general_viewer = 'SumatraPDF'
 "let g:vimtex_complete_bib = { 'simple': 1 }
 "let g:vimtex_complete_bib = { 'menu_fmt': '[@type] @author_all (@key), "@title"' }
-
-" neovim
-let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_compiler_progname = 'nvr'  " for neovim
 
 let g:vimtex_compiler_latexmk = {
 	\ 'backend' : 'jobs', 
@@ -438,3 +457,5 @@ let g:Tex_BibtexFlavor = 'biber'
 "let g:Tex_MultipleCompileFormats='pdf'
 "let g:Tex_ViewRule_pdf='yap -1'
 "set runtimepath=~/.vom,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+
+" }}}1
