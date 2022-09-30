@@ -8,3 +8,4 @@ iab informatoin information
 iab adn and
 iab waht what
 iab tehn then
+iab mnenomic mnemonic

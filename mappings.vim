@@ -1,4 +1,6 @@
 " Mappings to often used folders and docs
+"
+"   ``
 " ---------------------------------------
 
 " OS DEPENDENT MAPPINGS
@@ -35,6 +37,9 @@ nnoremap <leader>nl :cd ~/Dropbox/Log<CR>:e index.txt<CR>
 
 " Jump to VIMHOME and set as working directory
 nnoremap <leader>vh :execute ":cd ".VIMHOME<CR>:e . <CR>
+
+" Edit abbreviation file
+nnoremap <leader>ab :execute ":e ".VIMHOME."/spell/iabbrev.vim"<CR>
 
 " Calling external program
 " ------------------------
@@ -99,10 +104,10 @@ inoremap <silent> <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " Reset syntax highlighting (mnemonic `syntax reset`)
 nnoremap <leader>sr :syntax sync fromstart<CR>
 
-" Timestamp
+" Timestamp (datetime)
 " Invoegen op dezelfde lijn zou beter zijn
 "nnoremap <leader>ts i--------------<ESC>:put! =strftime(\"%a %Y/%m/%d\")<CR>i<CR>--------------<CR><Down><Down><ESC>
-nnoremap <leader>ts :put! =strftime(\"%Y-%m-%d\t%a\:\")<CR>A
+nnoremap <leader>dt :put! =strftime(\"%Y-%m-%d\t%a\:\")<CR>A
 
 "noremap! <expr> ,Y strftime("%Y")
 "noremap! <expr> ,D strftime("%b")
@@ -119,3 +124,12 @@ nnoremap <Right> :vertical-resize -2<CR>
 "nnoremap <C-K> <C-W><C-J>
 "nnoremap <C-L> <C-W><C-L>
 "nnoremap <C-H> <C-W><C-H>
+
+" Quiz yourself (default bindings)
+let g:todo_location = "~/Dropbox/todo.txt"
+let g:inbox_location = "~/Dropbox/inbox.todo.txt"
+nmap <leader>tc <Plug>(CaptureTodo)
+nmap <leader>ti <Plug>(GotoTodoInbox)
+nmap <leader>td <Plug>(GotoTodo)
+nmap <leader>mt <Plug>(MoveToTodo)
+nmap <leader>mi <Plug>(MoveToInbox)
