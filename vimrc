@@ -78,7 +78,7 @@ set cursorline
 set wildmenu
 
 " Make dir search (wildmenu) ignore certain files for speedup
-set wildignore+=*/.git/*,*/tmp/*,*.swp
+set wildignore+=*/.git/*,*/tmp/*,*.swp,*.pyc
 
 " Completion menu options
 set completeopt+=menuone
@@ -103,6 +103,7 @@ set noshowmode    "Avoid showing mode (e.g. -- INSERT -- ) below airline
 set incsearch
 set hlsearch
 set ignorecase
+set infercase
 
 " Allow switching buffers with unsaved work
 set hidden
@@ -124,6 +125,13 @@ set autoread
 
 " Keep n lines above and below the cursor
 set scrolloff=999
+
+" Behavior of splits
+set splitright
+set nosplitbelow
+
+" Virtual edit in visual block mode; handy for ragged lists
+set virtualedit=block
 
 " Enable digraph mode for entering special characters. Ä is produced by typing
 " A, then backspace, then ':'
@@ -457,5 +465,16 @@ let g:Tex_BibtexFlavor = 'biber'
 "let g:Tex_MultipleCompileFormats='pdf'
 "let g:Tex_ViewRule_pdf='yap -1'
 "set runtimepath=~/.vom,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+
+" Disable some native Vim plugins {{{1
+let g:loaded_2html_plugin = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_gzip = 1
+let g:loaded_logipat = 1
+let g:loaded_rrhelper = 1
+let g:loaded_spellfile_plugin = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_zipPlugin = 1
 
 " }}}1

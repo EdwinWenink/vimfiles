@@ -72,6 +72,9 @@ vnoremap <Space> za
 nnoremap <silent> gb :bnext<CR>
 nnoremap <silent> gB :bprevious<CR>
 
+" Terminal navigation
+tnoremap <esc> <c-\><c-n>
+
 " More consistent behavior for upper case
 nnoremap Y y$
 
