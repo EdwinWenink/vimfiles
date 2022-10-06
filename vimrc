@@ -17,6 +17,12 @@ runtime mappings.vim
 " Abbreviations
 runtime spell/iabbrev.vim
 
+" WIP automatically download Notes if it does not exist yet, using vim-fugitive
+let g:notes_dir='~/Documents/Notes'
+if !isdirectory(expand('~/Documents/Notes')) && exists(':Git') > 0
+    execute ":Git clone https://github.com/EdwinWenink/Notes " . g:notes_dir
+endif
+
 " Enable modification of buffer contents
 set modifiable 
 
