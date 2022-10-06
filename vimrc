@@ -153,8 +153,7 @@ set shellslash
 " Settings gVim on Windows
 if has ('gui_running')
 	if has ('gui_win32')
-		"set guifont=Courier_New:h10
-		set guifont=PragmataPro_Mono_Liga:h11
+		set guifont=PragmataPro_Mono_Liga:h11, guifont=Courier_New:h11, guifont=Consolas:h11
 		" Disable gui clutter for gVim
 		set guioptions-=m  "menu bar
 		set guioptions-=T  "toolbar
