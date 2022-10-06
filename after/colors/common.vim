@@ -9,6 +9,6 @@ highlight Error guibg=NONE
 highlight Visual ctermbg=Yellow
 
 " Ad-hoc highlighting rules 
-highlight VertSplit cterm=NONE guibg=NONE
+highlight VertSplit cterm=NONE
 highlight FoldColumn ctermbg=NONE guibg=NONE
 highlight SignColumn ctermbg=NONE guibg=NONE
