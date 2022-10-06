@@ -18,8 +18,8 @@
 " Enable python support on Windows by showing where the .dll is"
 if has('win32')
     " Check which .dll is expected with :version
-    let $PYTHONHOME = 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\'
-    let &pythonthreedll= 'C:\Users\Edwin Wenink\AppData\Local\Programs\Python\Python310\python310.dll'
+    let $PYTHONHOME = '~\AppData\Local\Programs\Python\Python310\'
+    let &pythonthreedll= '~\AppData\Local\Programs\Python\Python310\python310.dll'
 endif
 let g:pymode_python = 'python3'
 
