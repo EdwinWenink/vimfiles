@@ -63,6 +63,9 @@ endif
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 
+" Visual debugging within Vim
+" Plug 'puremourning/vimspector'
+
 " Code formatting
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
