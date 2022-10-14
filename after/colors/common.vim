@@ -10,5 +10,5 @@ highlight Visual ctermbg=Yellow
 
 " Ad-hoc highlighting rules 
 highlight VertSplit cterm=NONE
-highlight FoldColumn ctermbg=NONE
-highlight SignColumn ctermbg=NONE
+highlight FoldColumn ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE

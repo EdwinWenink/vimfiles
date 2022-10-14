@@ -17,6 +17,12 @@ runtime mappings.vim
 " Abbreviations
 runtime spell/iabbrev.vim
 
+" WIP automatically download Notes if it does not exist yet, using vim-fugitive
+let g:notes_dir='~/Documents/Notes'
+if !isdirectory(expand('~/Documents/Notes')) && exists(':Git') > 0
+    execute ":Git clone https://github.com/EdwinWenink/Notes " . g:notes_dir
+endif
+
 " Enable modification of buffer contents
 set modifiable 
 
@@ -147,8 +153,7 @@ set shellslash
 " Settings gVim on Windows
 if has ('gui_running')
 	if has ('gui_win32')
-		"set guifont=Courier_New:h10
-		set guifont=PragmataPro_Mono_Liga:h11
+		set guifont=PragmataPro_Mono_Liga:h11, guifont=Courier_New:h11, guifont=Consolas:h11
 		" Disable gui clutter for gVim
 		set guioptions-=m  "menu bar
 		set guioptions-=T  "toolbar

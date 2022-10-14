@@ -1,3 +1,10 @@
+" If Python is not available, do not load some plugins that will constantly
+" throw warnings.
+
+if !has('python3')
+    let g:did_plugin_ultisnips=1
+endif
+
 " By not specify a path, Plug automatically defaults to `~/.vim/plugged` on Unix
 " and to `~/vimfiles/` on Windows.
 call plug#begin()

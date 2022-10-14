@@ -16,8 +16,8 @@
 "    ]m Jump forwards to begin of next method/scope
 
 " If for some reason we cannot find the Python executable on Windows
-" enable Python support on Windows by showing where the .dll is"
-if has('win32') && !executable('python') 
+" enable Python support on Windows by showing where the .dll is
+if has('win32') and !has('python3') 
     " Check which .dll is expected with :version
     let $PYTHONHOME = '~\AppData\Local\Programs\Python\Python310\'
     let &pythonthreedll= '~\AppData\Local\Programs\Python\Python310\python310.dll'
