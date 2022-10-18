@@ -22,13 +22,16 @@
 " notities daarin zet
 
 " Set your note directories here
-let g:notes_dir = "C:/Users/Edwin\ Wenink/Documents/Notes/"
-let g:zettelkasten = "C:/Users/Edwin\ Wenink/Documents/Notes/"
+" TODO notes_dir is defined in the global vimrc; decise whether to use notes_dir or zettelkasten
+" TODO fnameescape(fnamemodify(..., ":p")) is necessary to expand ~ e.g. in cmd.exe; do here or elsewhere?
+let g:notes_dir = fnameescape(fnamemodify('~/Documents/Notes/', ':p'))
+let g:zettelkasten = fnameescape(fnamemodify('~/Documents/Notes/', ':p'))
 
 " 'Notes Grep' with ripgrep (see grepprg)
 " -i case insensitive
 " -g glob pattern
 " ! to not immediately open first search result
+" TODO update path to variable
 command! -nargs=1 Ngrep grep! "<args>" -i -g "*.md" "C:/Users/Edwin Wenink/Documents/Notes/"
 " TODO functie maken om fnameescape(notes_dir) te gebruiken; evalueer
 " variabele met execute
@@ -43,6 +46,7 @@ nnoremap <leader>ng :Ngrep
 " Variant for searching a tag starting with @
 " Prepopulate search with <cword>tag under cursor, but allow replacement
 " TODO are optimalizations possible, e.g. stopping search early?
+" TODO update to path variable
 command! -nargs=1 Tgrep grep! "@<args>" -i -g "*.md" "C:/Users/Edwin Wenink/Documents/Notes/"
 "nnoremap <leader>t :Tgrep <cword>
 
@@ -78,7 +82,7 @@ command! -nargs=1 NewZettel :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") 
 nnoremap <leader>nz :NewZettel 
 
 " Notes update ('nu'): run python update script
-nnoremap <leader>nu :!python "C:\Users\Edwin Wenink\Documents\Notes\update.py"<CR>
+nnoremap <leader>nu :execute ":!python" zettelkasten . "update.py"<CR>
 
 " Suggestions by Jared on my website 
 " https://www.edwinwenink.xyz/posts/48-vim_fast_creating_and_linking_notes/#b64351f0-d40d-11ea-a360-6f00b702838a

@@ -1,6 +1,5 @@
 " If Python is not available, do not load some plugins that will constantly
 " throw warnings.
-
 if !has('python3')
     let g:did_plugin_ultisnips=1
 endif
