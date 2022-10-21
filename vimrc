@@ -18,7 +18,7 @@ runtime mappings.vim
 runtime spell/iabbrev.vim
 
 " WIP automatically download Notes if it does not exist yet, using vim-fugitive
-let g:notes_dir='~/Documents/Notes'
+let g:notes_dir=expand('~/Documents/Notes/')
 if !isdirectory(expand('~/Documents/Notes')) && exists(':Git') > 0
     execute ":Git clone https://github.com/EdwinWenink/Notes " . g:notes_dir
 endif
@@ -174,8 +174,7 @@ endif
 
 " Apply my own ad-hoc styling rules *after* loading a color scheme
 " Ref: https://vi.stackexchange.com/a/24847
-" TODO is there a better way of running the python specific highlights only
-" for Python files?
+" TODO is there a better way of running the python specific highlights only for Python files?
 augroup colors
     au!
     autocmd ColorScheme * runtime after/colors/common.vim
