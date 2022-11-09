@@ -96,7 +96,7 @@ set completeopt+=noselect
 set shortmess+=c
 
 "Disable vim beeping during completion
-set belloff+=ctrlg 
+set belloff=all 
 
 " always show signcolumns
 set signcolumn=yes
