@@ -21,7 +21,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'qpkorr/vim-renamer'
 
 " Fuzzy file finding
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 "Plug 'junegunn/fzf',  { 'dir': '~/.fzf', 'do': { -> fzf#install() }}
 Plug 'junegunn/fzf'
