@@ -150,6 +150,11 @@ set clipboard^=unnamed,unnamedplus
 " slashes are converted by Vim
 set shellslash
 
+" Put swap files in a dedicated vimswap folder under VIMHOME
+" The ending // enforces absolute paths for the swap files
+" We append the default settings as a fallback
+let &directory=VIMHOME . '/vimswap//,' . &directory
+
 " Settings gVim on Windows
 if has ('gui_running')
 	if has ('gui_win32')
