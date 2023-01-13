@@ -8,6 +8,8 @@ endif
 " and to `~/vimfiles/` on Windows.
 call plug#begin()
 
+" General {{{1
+
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
@@ -43,8 +45,6 @@ Plug 'tpope/vim-fugitive'
 " More useful hlsearch
 Plug 'romainl/vim-cool'
 
-" ------------------ CODING/IDE SIMULATION ---------------------------
-
 " Surround with brackets (yss new surroundings, cst" change, ds" delete )
 Plug 'tpope/vim-surround'
 
@@ -54,31 +54,51 @@ Plug 'tpope/vim-repeat'
 " Autocompletion that only uses native vim autocomplete features
 " Plug 'lifepillar/vim-mucomplete'
 
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Linting, autocompletion, LSP {{{1
 
-" Autocompletion
+" Deoplete Autocompletion
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-" Deoplete + Jedi
-Plug 'deoplete-plugins/deoplete-jedi'
+" Deoplete + Jedi (do not forget to install Jedi)
+" Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 
 " Visual debugging within Vim
 " Plug 'puremourning/vimspector'
 
 " Code formatting
+" NOTE candidate for deletion
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
+" ALE Asynchronous Linting Engine
+Plug 'dense-analysis/ale'
+
+" LSP for Vim
+" Replace Jedi with LSP?
+" Plug 'prabirshrestha/vim-lsp'
+" vim-lsp-settings can be used for managing language servers
+" :LspInstallServer installs server for the current supported filetype
+" Plug 'mattn/vim-lsp-settings'
+" Will automatically kick in if you set g:ale_linters for a specific filetype
+" Plug 'rhysd/vim-lsp-ale'
+" Integration with UltiSnips
+" Plug 'thomasfaingnaert/vim-lsp-snippets'
+" Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+
 " Flake8 Python Linting
-Plug 'nvie/vim-flake8'
+" If I keep using ALE, becomes obsolete
+" but perhaps still nice to have as a simple backup
+" Plug 'nvie/vim-flake8'
+
+" Programming general {{{1
 
 " Interactive Programming
 " Plug 'williamjameshandley/vimteractive'
@@ -92,7 +112,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 
 " Autclose bracket-like symbols
-" TODO disable autopair for prose style types like .txt and .md 
+" TODO disable autopair for prose style types like .txt and .md
 Plug 'jiangmiao/auto-pairs'
 
 " Graphics shader syntax
@@ -115,7 +135,7 @@ Plug 'scrooloose/nerdcommenter'
 " Keeps track of git changes
 " Plug 'airblade/vim-gitgutter'
 
-" WORKFLOW ----------------------------------
+" Plain text workflow {{{1
 
 " Vim wiki
 " Plug 'vimwiki/vimwiki'
@@ -138,7 +158,7 @@ Plug 'EdwinWenink/capture-todo.vim'
 Plug 'EdwinWenink/vim-quiz'
 
 
-" WRITING ----------------------------------
+" Writing: pandoc, markdown, latex {{{1
 
 " Integration of vim with pandoc
 Plug 'vim-pandoc/vim-pandoc'
@@ -149,7 +169,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
-" Markdown 
+" Markdown
 "Plug 'tpope/vim-markdown'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'godlygeek/tabular'
@@ -167,11 +187,11 @@ Plug 'matze/vim-tex-fold' "simple regexpr for folding sections
 
 " Autocorrect common typos
 " Custom list of iabbrev (1 sec delay on startup)
-"Plug 'panozzaj/vim-autocorrect' 
+"Plug 'panozzaj/vim-autocorrect'
 " This plugin just accepts the default Vim suggestion (dangerous?)
 "Plug 'sedm0784/vim-you-autocorrect'
 
-" THEME 
+" Themes {{{1
 
 " Install theme packages
 Plug 'chriskempson/base16-vim'

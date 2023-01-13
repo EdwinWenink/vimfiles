@@ -8,7 +8,10 @@ highlight Error guibg=NONE
 " TODO: Maybe fix my .Xresources instead?
 highlight Visual ctermbg=Yellow
 
-" Ad-hoc highlighting rules 
+" Ad-hoc highlighting rules
 highlight VertSplit cterm=NONE
 highlight FoldColumn ctermbg=NONE guibg=NONE
 highlight SignColumn ctermbg=NONE guibg=NONE
+
+" I want pop up menu's to use the overall background color
+highlight PMenu guibg=NONE

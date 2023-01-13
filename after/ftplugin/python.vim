@@ -17,7 +17,7 @@
 
 " If for some reason we cannot find the Python executable on Windows
 " enable Python support on Windows by showing where the .dll is
-if has('win32') && !has('python3') 
+if has('win32') && !has('python3')
     " Check which .dll is expected with :version
     let $PYTHONHOME = '~\AppData\Local\Programs\Python\Python310\'
     let &pythonthreedll= '~\AppData\Local\Programs\Python\Python310\python310.dll'
@@ -29,7 +29,7 @@ if has('python3')
     silent! python3 1
 endif
 
-setlocal expandtab shiftwidth=4 tabstop=4 
+setlocal expandtab shiftwidth=4 tabstop=4
 " Next line made it impossible to use > on lines starting with '#'
 " because in C this is an include statement and not a comment
 " setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,cla
@@ -41,7 +41,7 @@ setlocal foldmethod=indent foldlevel=99
 
 augroup python
     au!
-    autocmd BufWritePost *.py call Flake8()  " Run linter on saving
+    " autocmd BufWritePost *.py call Flake8()  " Run linter on saving
     autocmd BufRead,BufNewFile *.py let python_highlight_all = 1
     autocmd BufRead,BufNewFile *.py let python_space_error_highlight = 1
 augroup END
@@ -65,18 +65,6 @@ nnoremap <localleader>fu :call flake8#Flake8UnplaceMarkers()<CR>
 " 'flake current'
 nnoremap <localleader>fc :call flake8#Flake8ShowError()<CR>
 
-" Jedi-vim (deoplete + python)
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 1
-let g:jedi#goto_command = "<localleader>g"
-let g:jedi#goto_assignments_command = "<localleader>a"
-let g:jedi#goto_stubs_command = "<localleader>s"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<localleader>u"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<localleader>r"
-
 " Within regular vimrc, I used autocommands for detecting the filetype
 " That's not necessary in this ftplugin anymore
 "augroup python
@@ -93,4 +81,3 @@ let g:jedi#rename_command = "<localleader>r"
     "autocmd BufWritePost *.py call Flake8()  " Run linter on saving
 "augroup END
 "
-

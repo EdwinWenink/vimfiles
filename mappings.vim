@@ -1,4 +1,4 @@
-" OS dependent mappings {{{1 
+" OS dependent mappings {{{1
 " --------------------------
 
 " Windows specific mappings
@@ -10,7 +10,7 @@ if has('win32')
     " Open file under cursor with external default problem
     nnoremap gO :!start /B <cfile><CR>
 
-    " Open netrw in folder with blog posts 
+    " Open netrw in folder with blog posts
     nnoremap <leader>ws :e ~/Documents/personal_website/config.toml<CR>
 endif
 
@@ -20,15 +20,15 @@ if has('unix')
     " nnoremap <silent> <A-f> :if expand("%:p:h") != "" \| exec "!start explorer.exe" expand("%:p:h:S") \| endif<CR>
     " Think Unix uses 'open' instead of 'start'?
     " nnoremap gO :!start /B <cfile><CR>
-endif 
+endif
 
-" Shortcuts to directories {{{1 
+" Shortcuts to directories {{{1
 " -----------------------------
 
 let g:website = "~/Documents/personal_website/"
-" TODO automatically open after creation; requires doing this in a function 
-command! -nargs=1 NewMicro :execute ":cd" website "| !hugo new -k micro micro/" . strftime("%Y-%m-%d") . "-<args>.md" 
-nnoremap <leader>nm :NewMicro 
+" TODO automatically open after creation; requires doing this in a function
+command! -nargs=1 NewMicro :execute ":cd" website "| !hugo new -k micro micro/" . strftime("%Y-%m-%d") . "-<args>.md"
+nnoremap <leader>nm :NewMicro
 
 " Open log
 nnoremap <leader>nl :cd ~/Dropbox/Log<CR>:e index.txt<CR>
@@ -61,7 +61,7 @@ nnoremap <leader>cd :cd %:h<CR>
 " Map F8 to disabling auto indenting
 :nnoremap <F8> :setl noai nocin nosi<CR>
 
-" Escaping insert mode the lazy way 
+" Escaping insert mode the lazy way
 :inoremap jj <Esc>
 
 " Use space to open and close folds
@@ -138,5 +138,16 @@ nmap <leader>ti <Plug>(GotoTodoInbox)
 nmap <leader>td <Plug>(GotoTodo)
 nmap <leader>mt <Plug>(MoveToTodo)
 nmap <leader>mi <Plug>(MoveToInbox)
+
+" Maps for ALE
+nnoremap <silent> <Leader>l <Cmd>lopen<CR>
+nnoremap <silent> <Leader>g <Cmd>ALEGoToDefinition<CR>
+nnoremap <silent> <Leader>u <Cmd>ALEFindReferences<CR>
+nnoremap <silent> <Leader>ar <Cmd>ALERename<CR>
+nnoremap <silent> <Leader>ac <Cmd>ALECodeAction<CR>
+nnoremap <silent> <Leader>ah <Cmd>ALEHover<CR>
+"nnoremap <silent> <Leader>af <Cmd>ALEFix<CR>
+" nnoremap <silent> <Leader>ai <Cmd>ALEInfo<CR>
+" nnoremap <silent> <Leader>ai <Cmd>ALESymbolSearch<CR>
 
 " }}}1
