@@ -291,23 +291,24 @@ let g:jedi#documentation_command = "K"
 
 " Deoplete {{{2
 " Requires pip3 install --user pynvim
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " Pass a dictionary to set multiple options
-call deoplete#custom#option({
-\ 'auto_complete_delay': 100,
-\ 'auto_complete': v:true,
-\ 'auto_complete_popup': 'auto',
+"
+"call deoplete#custom#option({
+"\ 'auto_complete_delay': 100,
+"\ 'auto_complete': v:true,
+"\ 'auto_complete_popup': 'auto',
 \ 'smart_case': v:true,
-\ })
+"\ })
 
 " Completion sources
 " You can also directly use a LSP server as a source here
 " jedi-vim with deoplete worked quite okay for me
 " NOTE not sure which source is the correct name...
-call deoplete#custom#option('sources', {
-\ '_': ['ale'],
-\})
+"call deoplete#custom#option('sources', {
+"\ '_': ['ale'],
+"\})
 
 " ALE {{{2
 

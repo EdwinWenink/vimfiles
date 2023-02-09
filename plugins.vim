@@ -57,13 +57,13 @@ Plug 'tpope/vim-repeat'
 " Linting, autocompletion, LSP {{{1
 
 " Deoplete Autocompletion
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
+"if has('nvim')
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+    "Plug 'Shougo/deoplete.nvim'
+    "Plug 'roxma/nvim-yarp'
+    "Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 
 " Deoplete + Jedi (do not forget to install Jedi)
 " Plug 'deoplete-plugins/deoplete-jedi'
