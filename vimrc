@@ -375,6 +375,8 @@ augroup END
 " From help mucomplete-compatibility
 
 " Defaults:
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
