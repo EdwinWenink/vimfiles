@@ -167,3 +167,5 @@ prepocessing
 config
 preprocessed
 preprocess
+workspace
+AzureML
