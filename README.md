@@ -7,7 +7,7 @@ Another annoying difference is that under Unix your `vimrc` is stored as `~/.vim
 We get more consistency by storing our `vimrc` in this repository *without* a prefix.
 
 I use [vim-plug](https://github.com/junegunn/vim-plug) for managing external plugins.
-They will be stored in a `plugged/` folder after you open Vim and run `:Plug install`.
+They will be stored in a `plugged/` folder after you open Vim and run `:PlugInstall`.
 
 ## Organisation
 
