@@ -101,10 +101,6 @@ set belloff=all
 " always show signcolumns
 set signcolumn=yes
 
-" Modline settings
-set laststatus=2  "Always show
-set noshowmode    "Avoid showing mode (e.g. -- INSERT -- ) below airline
-
 " Settings for vim search
 set incsearch
 set hlsearch
@@ -174,6 +170,16 @@ if has ('gui_running')
 	endif
 endif
 
+" Enable Airline in GUI only
+if !empty($TERM)
+    set laststatus=0 "Don't show
+    " This seems to be overruled by Airline, so next line was needed
+    autocmd VimEnter * set laststatus=0
+else
+    set laststatus=2 "Always show
+    set noshowmode "Avoid showing mode (e.g. -- INSERT -- ) below airline
+endif
+
 " Style {{{1
 " ----------
 
@@ -199,6 +205,7 @@ else
     " settings from above has nothing to override.
     colorscheme default
 endif
+
 
 " Programming languages {{{1
 " --------------------------
