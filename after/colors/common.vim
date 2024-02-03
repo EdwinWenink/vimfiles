@@ -7,8 +7,6 @@ highlight SpellRare cterm=underline ctermbg=NONE guibg=NONE
 highlight Error cterm=underline ctermbg=NONE guibg=NONE
 " highlight WarningMsg gui=undercurl  " I'm experiencing bugs where undercurl doesn't clear
 
-
-
 " Ad-hoc highlighting rules
 highlight VertSplit cterm=NONE
 highlight FoldColumn ctermbg=NONE guibg=NONE
@@ -16,3 +14,6 @@ highlight SignColumn ctermbg=NONE guibg=NONE
 
 " I want pop up menu's to use the overall background color
 highlight PMenu guibg=NONE
+
+" No background on Folding
+highlight Folded ctermbg=None guibg=None
