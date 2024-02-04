@@ -4,6 +4,7 @@
 highlight SpellBad cterm=underline ctermbg=NONE ctermfg=red guibg=NONE
 highlight SpellCap cterm=underline ctermbg=NONE guibg=NONE
 highlight SpellRare cterm=underline ctermbg=NONE guibg=NONE
+highlight SpellLocal cterm=underline ctermbg=NONE guibg=NONE
 highlight Error cterm=underline ctermbg=NONE guibg=NONE
 " highlight WarningMsg gui=undercurl  " I'm experiencing bugs where undercurl doesn't clear
 
@@ -17,3 +18,6 @@ highlight PMenu guibg=NONE
 
 " No background on Folding
 highlight Folded ctermbg=NONE guibg=NONE
+
+" No background on glyphs when using conceallevel
+highlight Conceal ctermbg=NONE guibg=NONE
