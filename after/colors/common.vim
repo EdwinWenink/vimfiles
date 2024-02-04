@@ -16,4 +16,4 @@ highlight SignColumn ctermbg=NONE guibg=NONE
 highlight PMenu guibg=NONE
 
 " No background on Folding
-highlight Folded ctermbg=None guibg=None
+highlight Folded ctermbg=NONE guibg=NONE
