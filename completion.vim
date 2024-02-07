@@ -1,67 +1,26 @@
-" Mucomplete {{{2
-" This plugins does nothing more than automatically triggering omnifunc
-" which normally requires pressing Ctrl-X Ctrl-O
-"Toggle with :MUcompleteAutoToggle
-" let g:mucomplete#enable_auto_at_startup = 1
-" let g:mucomplete#completion_delay = 1
-
-" I seem to have introduced some sort of recursive fallback in the case of
-" tex, when a completion is not found.
-"let g:mucomplete#chains = {
-    "\ 'default' : ['path', 'omni',  'ulti', 'keyn', 'dict', 'uspl'],
-    "\ }
-
-" Jedi autocompletion {{{2
-
-" There is a weird bug where if I press backspace in the omnifunc menu I get a
-" brief popup.
-" Also not completion is not automatic for some reason...
-
-" Jedi-vim: autocompletion for Python
-" deoplete-jedi provides integration with Deoplete
-" Disable jedi-vim completions to use deoplete-jedi instead
-" TODO figure out how jedi-vim and deoplete-jedi interact
-" Do not use both?
-" Jedi-vim still provides parameter previewing
-let g:jedi#completions_enabled = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 1
-let g:jedi#documentation_command = "K"
-"let g:jedi#goto_command = "<localleader>g"
-"let g:jedi#goto_assignments_command = "<localleader>a"
-"let g:jedi#goto_stubs_command = "<localleader>s"
-"let g:jedi#goto_definitions_command = ""
-"let g:jedi#usages_command = "<localleader>u"
-"let g:jedi#completions_command = "<C-Space>"
-"let g:jedi#rename_command = "<localleader>r"
-
-" Deoplete {{{2
-" Requires pip3 install --user pynvim
-" let g:deoplete#enable_at_startup = 1
-
-" Pass a dictionary to set multiple options
-"
-"call deoplete#custom#option({
-"\ 'auto_complete_delay': 100,
-"\ 'auto_complete': v:true,
-"\ 'auto_complete_popup': 'auto',
-\ 'smart_case': v:true,
-"\ })
-
-" Completion sources
-" You can also directly use a LSP server as a source here
-" jedi-vim with deoplete worked quite okay for me
-" NOTE not sure which source is the correct name...
-"call deoplete#custom#option('sources', {
-"\ '_': ['ale'],
-"\})
+" This file contains various completion setups, including old ones that I
+" keep here for reference. I currently use ALE with linters and a Python LSP.
 
 " ALE {{{2
+" Pip requirements: isort, mypy, python-lsp-server
+
+" Maps for ALE
+nnoremap <silent> <Leader>l <Cmd>lopen<CR>
+nnoremap <silent> <Leader>g <Cmd>ALEGoToDefinition<CR>
+nnoremap <silent> <Leader>u <Cmd>ALEFindReferences<CR>
+nnoremap <silent> <F2> <Cmd>ALERename<CR>
+nnoremap <silent> <Leader>ac <Cmd>ALECodeAction<CR>
+nnoremap <silent> <Leader>ah <Cmd>ALEHover<CR>
+nnoremap <silent> <Leader>aj <Cmd>ALENext<CR>
+nnoremap <silent> <Leader>ak <Cmd>ALEPrevious<CR>
+" nnoremap <silent> <Leader>af <Cmd>ALEFix<CR>
+" nnoremap <silent> <Leader>ai <Cmd>ALEInfo<CR>
+" nnoremap <silent> <Leader>ai <Cmd>ALESymbolSearch<CR>
 
 " Pip install isort
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['autoimport', 'isort', 'remove_trailing_lines' ,'trim_whitespace']
+\   'python': ['autoimport', 'isort', 'remove_trailing_lines' ,'trim_whitespace', 'ruff']
 \}
 let g:ale_fix_on_save = 1
 
@@ -106,7 +65,7 @@ let g:ale_floating_preview = 1
 "let g:ale_hover_to_floating_preview = 1
 " Automatically open preview-window with error/warnings on hover
 let g:ale_cursor_detail = 0
-let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+let g:ale_floating_window_border = ['│', '─', 'O', 'O', 'O', 'O', '│', '─']
 
 " If you do not use ALE as a source for Deoplete but standalone,
 " turn the following setting on to use ALEs own completion engine
@@ -128,3 +87,64 @@ augroup ale_hover_cursor
   autocmd CursorHold *.py ALEHover
 augroup END
 
+
+" Mucomplete {{{2
+" This plugins does nothing more than automatically triggering omnifunc
+" which normally requires pressing Ctrl-X Ctrl-O
+"Toggle with :MUcompleteAutoToggle
+" let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#completion_delay = 1
+
+" I seem to have introduced some sort of recursive fallback in the case of
+" tex, when a completion is not found.
+"let g:mucomplete#chains = {
+    "\ 'default' : ['path', 'omni',  'ulti', 'keyn', 'dict', 'uspl'],
+    "\ }
+
+" Jedi autocompletion {{{2
+
+" There is a weird bug where if I press backspace in the omnifunc menu I get a
+" brief popup.
+" Also not completion is not automatic for some reason...
+
+" Jedi-vim: autocompletion for Python
+" deoplete-jedi provides integration with Deoplete
+" Disable jedi-vim completions to use deoplete-jedi instead
+" TODO figure out how jedi-vim and deoplete-jedi interact
+" Do not use both?
+
+" Jedi-vim still provides quite nice parameter previewing
+"
+" let g:jedi#completions_enabled = 0
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#popup_select_first = 1
+" let g:jedi#documentation_command = "K"
+
+"let g:jedi#goto_command = "<localleader>g"
+"let g:jedi#goto_assignments_command = "<localleader>a"
+"let g:jedi#goto_stubs_command = "<localleader>s"
+"let g:jedi#goto_definitions_command = ""
+"let g:jedi#usages_command = "<localleader>u"
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#rename_command = "<localleader>r"
+
+" Deoplete {{{2
+" Requires pip3 install --user pynvim
+" let g:deoplete#enable_at_startup = 1
+
+" Pass a dictionary to set multiple options
+"
+"call deoplete#custom#option({
+"\ 'auto_complete_delay': 100,
+"\ 'auto_complete': v:true,
+"\ 'auto_complete_popup': 'auto',
+" \ 'smart_case': v:true,
+"\ })
+
+" Completion sources
+" You can also directly use a LSP server as a source here
+" jedi-vim with deoplete worked quite okay for me
+" NOTE not sure which source is the correct name...
+"call deoplete#custom#option('sources', {
+"\ '_': ['ale'],
+"\})
