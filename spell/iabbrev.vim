@@ -7,6 +7,7 @@ iab date/ <c-r>=strftime("%Y/%m/%d ")<cr>
 " I tend to mess up oin -> ion
 iab informatoin information
 iab locatoin location
+iab statoin station
 iab adn and
 iab waht what
 iab tehn then
