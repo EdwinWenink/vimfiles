@@ -60,7 +60,7 @@ Plug 'tpope/vim-repeat'
 
 " Deoplete + Jedi (do not forget to install Jedi)
 " Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 
 " Code formatting
 " NOTE candidate for deletion
@@ -89,10 +89,6 @@ Plug 'dense-analysis/ale'
 " Plug 'nvie/vim-flake8'
 
 " Programming general {{{1
-
-" Interactive Programming
-" Plug 'williamjameshandley/vimteractive'
-" Plug 'cjrh/vim-conda'
 
 " Javascript syntax
 Plug 'pangloss/vim-javascript'
