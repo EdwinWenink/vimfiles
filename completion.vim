@@ -20,7 +20,7 @@ nnoremap <silent> <Leader>ak <Cmd>ALEPrevious<CR>
 " Pip install isort
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['autoimport', 'isort', 'remove_trailing_lines' ,'trim_whitespace', 'ruff']
+\   'python': ['autoimport', 'isort', 'remove_trailing_lines' ,'trim_whitespace', 'ruff_format']
 \}
 let g:ale_fix_on_save = 1
 
