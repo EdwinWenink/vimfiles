@@ -210,6 +210,8 @@ endif
 " Programming languages {{{1
 " --------------------------
 
+runtime completion.vim
+
 " Python {{{2
 " -----------
 
@@ -242,17 +244,6 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 "vim-jsx-pretty'
 let g:vim_jsx_pretty_colorful_config = 0 " default 0
 
-" Java {{{2
-
-" Compile java files from within vim
-command! Javac !javac $(find . -name "*.java")
-
-" HLSL shaders {{{2
-augroup shader
-    autocmd!
-	autocmd BufNewFile,BufRead *.compute set ft=hlsl
-	autocmd BufNewFile,BufRead *.compute set nospell
-augroup END
 
 
 " General plugin settings {{{1
