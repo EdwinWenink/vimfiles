@@ -146,6 +146,8 @@ nnoremap <silent> <Leader>u <Cmd>ALEFindReferences<CR>
 nnoremap <silent> <Leader>ar <Cmd>ALERename<CR>
 nnoremap <silent> <Leader>ac <Cmd>ALECodeAction<CR>
 nnoremap <silent> <Leader>ah <Cmd>ALEHover<CR>
+nnoremap <silent> <Leader>aj <Cmd>ALENext<CR>
+nnoremap <silent> <Leader>ak <Cmd>ALEPrevious<CR>
 "nnoremap <silent> <Leader>af <Cmd>ALEFix<CR>
 " nnoremap <silent> <Leader>ai <Cmd>ALEInfo<CR>
 " nnoremap <silent> <Leader>ai <Cmd>ALESymbolSearch<CR>

@@ -119,8 +119,8 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'tikhomirov/vim-glsl'
 " Plug 'beyondmarc/hlsl.vim'
 
-" Git extension for NERDTree
-" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Terraform (syntax, :Terraform, :TerraformFmt)
+Plug 'hashivim/vim-terraform'
 
 " Run commands without vim in tmux pane with VimuxRunCommand (you are supposed
 " to run vim within tmux then)
@@ -156,7 +156,6 @@ Plug 'EdwinWenink/capture-todo.vim'
 
 " Quiz yourself
 Plug 'EdwinWenink/vim-quiz'
-
 
 " Writing: pandoc, markdown, latex {{{1
 

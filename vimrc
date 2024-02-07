@@ -324,6 +324,17 @@ let g:ale_linters = {
     \   'python': ['pylsp', 'mypy'],
     \ }
 
+" TODO hoe zorg ik ervoor dat pylsp setup.cfg of .flake8 oppikt?
+" let g:ale_python_pylsp_config = {
+    "\   'pylsp': {
+    "\     'plugins': {
+    "\       'pycodestyle': {
+    "\         'enabled': v:true
+    "\       }
+    "\     }
+    "\   },
+    "\ }
+
 " LSP integration
 let g:ale_disable_lsp=0
 let g:lsp_diagnostics_enabled = 1
@@ -522,10 +533,10 @@ let g:vimtex_enabled = 1
 let g:vimtex_view_enabled = 1
 let g:vimtex_view_method = 'general'
 "let g:vimtex_view_general_viewer = 'mupdf'
-let g:vimtex_view_general_viewer = 'SumatraPDF'
+"let g:vimtex_view_general_viewer = 'SumatraPDF'
 "let g:vimtex_complete_bib = { 'simple': 1 }
 "let g:vimtex_complete_bib = { 'menu_fmt': '[@type] @author_all (@key), "@title"' }
-let g:vimtex_compiler_progname = 'nvr'  " for neovim
+"let g:vimtex_compiler_progname = 'nvr'  " for neovim
 
 let g:vimtex_compiler_latexmk = {
 	\ 'backend' : 'jobs',
