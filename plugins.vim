@@ -19,15 +19,8 @@ Plug 'SirVer/ultisnips'   " See ~/vimfiles/ultisnip/  and :UltisnipEdit
 "File explorers
 Plug 'tpope/vim-vinegar'
 
-" Bulk rename files
-Plug 'qpkorr/vim-renamer'
-
 " Fuzzy file finding
 Plug 'ctrlpvim/ctrlp.vim'
-
-"Plug 'junegunn/fzf',  { 'dir': '~/.fzf', 'do': { -> fzf#install() }}
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 
 " Airline bar at bottom of vim
 Plug 'vim-airline/vim-airline'
@@ -69,9 +62,6 @@ Plug 'tpope/vim-repeat'
 " Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 
-" Visual debugging within Vim
-" Plug 'puremourning/vimspector'
-
 " Code formatting
 " NOTE candidate for deletion
 Plug 'prettier/vim-prettier', {
@@ -104,9 +94,6 @@ Plug 'dense-analysis/ale'
 " Plug 'williamjameshandley/vimteractive'
 " Plug 'cjrh/vim-conda'
 
-" Offline documentation: integration with Zeal
-Plug 'KabbAmine/zeavim.vim'
-
 " Javascript syntax
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -115,16 +102,8 @@ Plug 'maxmellon/vim-jsx-pretty'
 " TODO disable autopair for prose style types like .txt and .md
 Plug 'jiangmiao/auto-pairs'
 
-" Graphics shader syntax
-" Plug 'tikhomirov/vim-glsl'
-" Plug 'beyondmarc/hlsl.vim'
-
 " Terraform (syntax, :Terraform, :TerraformFmt)
 Plug 'hashivim/vim-terraform'
-
-" Run commands without vim in tmux pane with VimuxRunCommand (you are supposed
-" to run vim within tmux then)
-" Plug 'benmills/vimux'
 
 " Smooth navigation between vim and tmux panels
 Plug 'christoomey/vim-tmux-navigator'
@@ -147,9 +126,6 @@ Plug 'lervag/wiki.vim'
 " Vim notes
 " Plug 'xolox/vim-notes'
 " Plug 'xolox/vim-misc'
-
-" Full-featured document outliner, e.g. voor markdown or latex (:Voom latex)
-Plug 'vim-scripts/VOoM'
 
 " Todo.txt
 Plug 'freitass/todo.txt-vim'
