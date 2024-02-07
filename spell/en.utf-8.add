@@ -169,7 +169,7 @@ preprocessed
 preprocess
 hardcoded
 reizigersdoorkoppeling
-Treinkenmerk
+treinkenmerk
 linters
 interpretability
 data-generating
@@ -191,3 +191,7 @@ hallucination
 Discussievragen
 resultaatgenieter
 parallelization
+workspace
+AzureML
+Thinkpad
+dwm

@@ -129,6 +129,9 @@ Plug 'hashivim/vim-terraform'
 " Smooth navigation between vim and tmux panels
 Plug 'christoomey/vim-tmux-navigator'
 
+" Send keys to a target, in my use case a REPL inside a tmux pane
+Plug 'jpalardy/vim-slime'
+
 " Add shortcuts for efficiently commenting out lines in visual mode (cc to comment out selection, c<space> to toggle comment of line)
 Plug 'scrooloose/nerdcommenter'
 

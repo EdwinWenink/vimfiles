@@ -1,5 +1,4 @@
 " Edwin's VIM.
-
 " Vim settings {{{1
 " -----------------
 
@@ -102,10 +101,6 @@ set belloff=all
 " always show signcolumns
 set signcolumn=yes
 
-" Modline settings
-set laststatus=2  "Always show
-set noshowmode    "Avoid showing mode (e.g. -- INSERT -- ) below airline
-
 " Settings for vim search
 set incsearch
 set hlsearch
@@ -175,6 +170,16 @@ if has ('gui_running')
 	endif
 endif
 
+" Enable Airline in GUI only
+if !empty($TERM)
+    set laststatus=0 "Don't show
+    " This seems to be overruled by Airline, so next line was needed
+    autocmd VimEnter * set laststatus=0
+else
+    set laststatus=2 "Always show
+    set noshowmode "Avoid showing mode (e.g. -- INSERT -- ) below airline
+endif
+
 " Style {{{1
 " ----------
 
@@ -200,6 +205,7 @@ else
     " settings from above has nothing to override.
     colorscheme default
 endif
+
 
 " Programming languages {{{1
 " --------------------------
@@ -386,6 +392,8 @@ augroup END
 " From help mucomplete-compatibility
 
 " Defaults:
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnips"]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
@@ -394,6 +402,33 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " According to :help , interferes with default binding i_CTRL-X_CTRL-K
 let g:UltiSnipsBackwardTrigger = "<s-tab>"
 
+" Slime (sending keys from Vim to targets) {{{2
+"
+":"       means current window, current pane (a reasonable default)
+":i"      means the ith window, current pane
+":i.j"    means the ith window, jth pane
+"h:i.j"   means the tmux session where h is the session identifier (either session name or number), the ith window and the jth pane
+"%i"      means i refers the pane's unique id
+"{token}" one of tmux's supported special tokens, like "{last}"
+let g:slime_target = "tmux"
+let g:slime_paste_file = expand("$HOME/.slime_paste")
+"
+" Setup for running Vim in one split tmux window, REPL in the other pane
+"let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), ""target_pane": ":.2"}
+
+" Or using a 'special token'
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+" If you want to use the default settings without prompting
+" let g:slime_dont_ask_default = 1
+
+" Bracketed paste (may not work with iPython?)
+" let g:slime_bracketed_paste = 1
+
+" If you want to override defaults:
+" let g:slime_no_mapping = 1
+" xmap <c-c><c-c> <Plug>SlimeRegionSend
+" nmap <c-c><c-c> <Plug>SlimeParagraphSend
+" nmap <c-c>v     <Plug>SlimeConfig
 
 " Vim easy align {{{2
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
