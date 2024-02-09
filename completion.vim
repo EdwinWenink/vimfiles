@@ -82,10 +82,10 @@ let g:airline#extensions#ale#enabled = 1
 
 " To automatically call ALEHover on cursor hover
 " we need to define the following
-augroup ale_hover_cursor
-  autocmd!
-  autocmd CursorHold *.py ALEHover
-augroup END
+" augroup ale_hover_cursor
+  " autocmd!
+  " autocmd CursorHold *.py ALEHover
+" augroup END
 
 
 " Mucomplete {{{2
