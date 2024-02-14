@@ -22,7 +22,10 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autoimport', 'isort', 'remove_trailing_lines' ,'trim_whitespace', 'ruff_format']
 \}
-let g:ale_fix_on_save = 1
+
+" TODO disable until I find out how to make ALE respect project config files
+" like `ruff.toml`
+let g:ale_fix_on_save = 0
 
 " Pip install mypy and python-lsp-server (not python-language-server!)
 let g:ale_linters = {
