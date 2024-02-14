@@ -23,9 +23,11 @@ let g:ale_fixers = {
 \   'python': ['autoimport', 'isort', 'remove_trailing_lines' ,'trim_whitespace', 'ruff_format']
 \}
 
-" TODO disable until I find out how to make ALE respect project config files
-" like `ruff.toml`
-let g:ale_fix_on_save = 0
+" TODO I cannot figure out how to make ALE respect project config files like `ruff.toml`
+" which can cause conflicts with autofixing and my pre-commit hooks
+let g:ale_fix_on_save = 1
+let g:ale_python_ruff_format_options = '--line-length 100'  # quick fix for ruff format
+
 
 " Pip install mypy and python-lsp-server (not python-language-server!)
 let g:ale_linters = {
