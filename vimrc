@@ -254,14 +254,24 @@ let g:vim_jsx_pretty_colorful_config = 0 " default 0
 
 " Defaults:
 
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnips"]
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsListSnippets = "<c-tab>"
-let g:UltiSnipsJumpForwardTrigger = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-" Not sure whether this is useful
-" According to :help , interferes with default binding i_CTRL-X_CTRL-K
-let g:UltiSnipsBackwardTrigger = "<s-tab>"
+if has ('python3')
+    let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnips"]
+    let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsListSnippets = "<c-tab>"
+    let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+    " Not sure whether this is useful
+    " According to :help , interferes with default binding i_CTRL-X_CTRL-K
+    let g:UltiSnipsBackwardTrigger = "<s-tab>"
+else
+    let g:UltiSnipsExpandTrigger = "<nop>"
+    let g:UltiSnipsListSnippets = "<nop>"
+    let g:UltiSnipsJumpForwardTrigger = "<nop>"
+    let g:UltiSnipsJumpBackwardTrigger = "<nop>"
+    " Not sure whether this is useful
+    " According to :help , interferes with default binding i_CTRL-X_CTRL-K
+    let g:UltiSnipsBackwardTrigger = "<nop>"
+endif
 
 " Slime (sending keys from Vim to targets) {{{2
 "
